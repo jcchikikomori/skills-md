@@ -1,0 +1,17 @@
+{
+  "name": "skills-md",
+  "owner": {
+    "name": "John Cyrill Corsanes",
+    "url": "https://github.com/jcchikikomori"
+  },
+  "metadata": {
+    "description": "Skills Repository for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "source": "./",
+      "description": "Skills Repository for Claude Code"
+    }
+  ]
+}
