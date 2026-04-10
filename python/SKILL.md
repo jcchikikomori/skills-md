@@ -75,9 +75,10 @@ description: Python best practices following PEP 8, ruff, type hints, and lightw
 - Type-check with **mypy** or **pyright** in strict mode.
 - Use `pre-commit` hooks to enforce quality gates.
 
-## FastAPI + SQLAlchemy (Quick Reference)
+## See Also
 
-See the `fastapi`, `sqlalchemy`, and `pydantic` skills for full details. Short reminders:
-- Provide short explanations when using these frameworks — relate to known PHP/Java/Ruby patterns.
-- If models/schemas exist, **reuse them** — never create duplicates.
-- Always read existing DB schema / migrations / models before writing new ones to avoid mismatches.
+- `fastapi` — routing, DI, auth, async patterns
+- `sqlalchemy` — ORM models, session management, query patterns
+- `pydantic` — schema design, validation, settings management
+
+> If models/schemas exist, **reuse them** — never create duplicates. Always read existing DB schema/migrations before writing new ones.

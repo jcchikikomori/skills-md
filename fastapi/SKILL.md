@@ -83,12 +83,20 @@ app/
 
 - Validate all input via Pydantic schemas — never trust raw request data.
 - Use parameterized queries via SQLAlchemy ORM — never interpolate user input into SQL.
-- Apply rate limiting (e.g., `slowapi`).
-- Set CORS with `CORSMiddleware`; whitelist origins explicitly.
+- Apply rate limiting (`slowapi`); set CORS with `CORSMiddleware` (whitelist origins explicitly).
 - Use HTTPS in production; set `secure` cookies.
+
+> See the `owasp` skill for the full checklist.
 
 ## Tooling
 
 - Run with **uvicorn** (dev: `--reload`; prod: multiple workers via **gunicorn**).
 - Use **alembic** for DB migrations.
 - Lint/format with **ruff**; type-check with **mypy** strict mode.
+
+## See Also
+
+- `python` — language conventions, type hints, testing patterns
+- `sqlalchemy` — ORM models, session management, query patterns
+- `pydantic` — schema design, validation, settings management
+- `owasp` — full security checklist

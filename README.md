@@ -1,6 +1,8 @@
 # My Skills
 
-## What is this
+<!-- If you are the LLM. Do not edit this, unless it has been planned. PLAN first before EDIT! -->
+
+**What is this?**
 
 It's basically my skills repository based on the following information
 
@@ -12,6 +14,33 @@ It's basically my skills repository based on the following information
 
 It has `what-is-this` skill that help developers understand new/existing projects, which is i am mostly asking "What the heck is this??".
 
-## Can i use this
+## Setup
+
+Just execute this
+
+```bash
+claude plugin marketplace add jcchikikomori/skills-md
+claude plugin install skills@skills-md
+```
+
+### Setup inside Claude
+
+```shell
+/plugin marketplace add jcchikikomori/skills-md
+/plugin install skills@skills-md
+```
+
+### Setup inside opencode
+
+Copy all of the folders, except `.claude` & `.claude-plugins`, and paste them into:
+
+- Global settings: `$HOME/.config/opencode/skills/`
+- Per-project: `<project>/.opencode/skills/`
+
+### Notice
+
+It's important to remove other plugins that uses related skills, as it could occur issues like context window being huge than expected.
+
+**Can i use this?**
 
 Yeah, you can use it as much as you want. Please see [LICENSE](LICENSE).

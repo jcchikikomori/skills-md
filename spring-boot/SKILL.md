@@ -23,10 +23,10 @@ description: Java/Kotlin backend development using the Spring Boot framework. Co
 - **Data Transfer Objects (DTOs):** Never expose Entities directly via REST controllers. Map Entities to DTOs using libraries like MapStruct or manual mappers.
 
 ## Security
-- **Spring Security:** 
-  - Use `SecurityFilterChain` beans for configuring HTTP security (avoid deprecated `WebSecurityConfigurerAdapter`).
-  - Secure endpoints using `@PreAuthorize` method-level security.
-  - Use standard stateless authentication (JWT) for APIs.
+- Use `SecurityFilterChain` beans (avoid deprecated `WebSecurityConfigurerAdapter`).
+- Secure endpoints with `@PreAuthorize`; use stateless JWT auth for APIs.
+
+> See the `owasp` skill for the full checklist.
 
 ## Exception Handling
 - Use `@RestControllerAdvice` and `@ExceptionHandler` to globally handle exceptions and return standardized, RFC 7807 (Problem Details) compliant JSON error responses.
@@ -35,3 +35,9 @@ description: Java/Kotlin backend development using the Spring Boot framework. Co
 - Use `application.yml` or `application.properties` for configurations.
 - Use `@ConfigurationProperties` for type-safe configuration binding instead of `@Value`.
 - Test controllers using `@WebMvcTest`. Test data layers with `@DataJpaTest`. Write integration tests with `@SpringBootTest` and Testcontainers.
+
+## See Also
+
+- `java` — language conventions, design patterns, modern Java features
+- `postgresql` — database-specific query patterns and indexing
+- `owasp` — full security checklist

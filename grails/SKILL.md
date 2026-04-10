@@ -31,3 +31,45 @@ Grails is a high-productivity web framework for the JVM based on the Groovy lang
 - **Never put business logic in Controllers.** Controllers should only handle routing, parameter binding, and choosing the response format.
 - Let GORM handle the heavy lifting of database migrations/schema updates via `database-migration` plugin (Liquibase).
 - Use Grails CLI commands (`grails create-domain-class`, `grails create-controller`, `grails generate-all`) to bootstrap code and ensure it lands in the conventionally correct folders.
+
+## Error Handling
+- Define custom error pages in `grails-app/controllers/UrlMappings.groovy`:
+  ```groovy
+  "500"(view: '/error')
+  "404"(view: '/notFound')
+  ```
+- For REST APIs, use a `@ControllerAdvice`-style bean or override `handleException` in controllers to return consistent JSON error responses.
+- Return minimal error info to clients; log full details server-side.
+
+## Security
+- Use the `spring-security-core` plugin for authentication and RBAC (deny-by-default config).
+- CSRF protection is enabled by default in Grails 3+; verify `grails.plugin.springsecurity.csrf.active = true`.
+- GORM dynamic finders and criteria queries use parameterized SQL automatically — avoid raw `executeQuery` with user input.
+- Set `grails.views.default.codec = 'html'` in `application.groovy` for global output encoding in GSP views.
+
+> See the `owasp` skill for the full checklist.
+
+## Testing (Spock)
+- Grails uses **Spock Framework** by default; tests live in `src/test/groovy/`.
+- Run tests: `grails test-app` (or `./gradlew test` for Gradle-based projects).
+- Unit tests extend `Specification`; integration tests extend `IntegrationSpec`.
+
+```groovy
+class UserServiceSpec extends Specification {
+    UserService service = new UserService()
+
+    def "should find user by email"() {
+        given:
+        def email = "test@example.com"
+
+        when:
+        def result = service.findByEmail(email)
+
+        then:
+        result.email == email
+    }
+}
+```
+
+- Use `@Mock` or `@TestFor` annotations to auto-inject mocked collaborators.
+- Target **>=95% coverage**; test both success and failure paths.

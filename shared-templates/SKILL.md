@@ -55,38 +55,7 @@ Use this structure when starting a new task:
 
 ---
 
-## Shared Tools Reference by Framework
-
-### Rails Tools
-| Task | Command |
-|------|---------|
-| Start server | `rails server` |
-| Console | `rails console` |
-| Migrations | `rails db:migrate` / `rails db:rollback` |
-| Generate | `rails generate migration/model/controller [name]` |
-| Tests | `bundle exec rspec` |
-| Linting | `bundle exec rubocop` |
-| Audit | `bundle audit` |
-
-### Node.js Tools
-| Task | Command |
-|------|---------|
-| Install deps | `npm install` / `yarn install` |
-| Dev server | `npm run dev` |
-| Build | `npm run build` |
-| Tests | `npm test` |
-| Lint | `npm run lint` |
-| Audit | `npm audit` |
-
-### Python Tools
-| Task | Command |
-|------|---------|
-| Virtual env | `python -m venv venv` |
-| Install deps | `pip install -r requirements.txt` |
-| Tests | `pytest` |
-| Type check | `mypy` |
-| Lint | `ruff check` |
-| Security | `safety check` |
+## Shared Tools Reference
 
 ### Database Tools
 | Task | Command |
@@ -172,7 +141,7 @@ Use this structure when starting a new task:
 
 ## Shared Accessibility Checklist (WCAG 2.1 Level AA)
 
-**Note**: For detailed accessibility audits, reference `web-audit-agent.md` or load `owasp` skill.
+**Note**: For detailed accessibility audits, load the `web-accessibility` skill.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -285,26 +254,7 @@ All development agents follow this general workflow:
 
 1. **For agents creating new tasks**: Reference Output Format template above
 2. **For security concerns**: Use "Quick OWASP Check" then load `owasp` skill for details
-3. **For accessibility**: Use "WCAG 2.1 Quick Check" then reference `web-audit-agent.md`
+3. **For accessibility**: Use "WCAG 2.1 Quick Check" then load `web-accessibility` skill for details
 4. **For learning paths**: Use "Shared Learning Resources" section
-5. **For command references**: Use "Tools Reference by Framework" section
+5. **For database commands**: Use "Database Tools" section
 
----
-
-## Consolidation Status
-
-### ✅ Consolidated (Removed from agents, reference here)
-- Output Format templates
-- Tools Reference tables
-- Learning Resources links
-- OWASP Quick Check
-
-### ⚠️ Still in Agents (Framework-specific, keep separate)
-- Code examples (Rails vs Node vs Python differ)
-- Framework-specific patterns
-- Legacy context (Rails 5.0 notes)
-
-### 🔄 Reference Links (Agents should link here)
-- Tests patterns
-- Database tools
-- Accessibility checklist

@@ -29,14 +29,10 @@ When executing backend tasks, ensure your work adheres to the latest industry st
 - **Migrations:** Always use a migration tool (Alembic, Rails ActiveRecord, Prisma, TypeORM). Never apply schema changes manually.
 
 ### 3. Application Security (OWASP Top 10)
-- **Authentication & Authorization:**
-  - Never store plain text passwords. Always use strong, salted hashes (Argon2, bcrypt).
-  - Validate JWT signatures, expiration, and issuer.
-  - Apply Role-Based Access Control (RBAC) at the route/controller level.
-- **Data Validation:** 
-  - Strictly validate and sanitize ALL incoming data (query parameters, JSON bodies, headers). Use validation libraries (Zod, Pydantic, Joi).
-  - Defend against CSRF and XSS.
-- **Rate Limiting:** Protect endpoints against brute force and DDoS attacks.
+- Hash passwords (Argon2/bcrypt), validate JWT signatures/expiration, enforce RBAC at the route level.
+- Validate and sanitize all incoming data; parameterized queries only; apply rate limiting.
+
+> See the `owasp` skill for the full security checklist.
 
 ### 4. Architecture & Error Handling
 - **Separation of Concerns:** Keep controllers thin. Move business logic to service layers, and data access to repository/model layers (MVC/Layered architecture).

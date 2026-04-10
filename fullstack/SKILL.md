@@ -23,13 +23,11 @@ When executing full-stack tasks, ensure your work adheres to the latest industry
 - **Separation of Concerns:** Keep business logic on the server. The frontend should only be responsible for presentation, user input validation, and managing view state.
 
 ### 3. Application Security (OWASP Top 10)
-- **Authentication Flow:**
-  - Implement secure session management (e.g., HTTPOnly, Secure cookies for JWTs/Session IDs) rather than storing tokens in `localStorage`.
-  - Handle OAuth2 or OIDC flows correctly (e.g., NextAuth, Passport).
-- **Validation (End-to-End):**
-  - **Frontend:** Validate forms (Zod, Yup) to provide immediate user feedback.
-  - **Backend:** NEVER trust the client. Re-validate all incoming data strictly.
-- **Protection:** Prevent XSS by sanitizing rich text inputs (DOMPurify). Prevent CSRF by using anti-CSRF tokens or SameSite cookies.
+- Use HTTPOnly/Secure cookies for tokens; never `localStorage` for JWTs.
+- Validate on both ends: client for UX, server-side always (never trust the client).
+- Sanitize rich text (DOMPurify); use SameSite cookies or anti-CSRF tokens.
+
+> See the `owasp` skill for the full security checklist.
 
 ### 4. Database & ORM
 - **Migrations:** Always manage database schemas via code migrations (Prisma, TypeORM, Alembic, ActiveRecord).
@@ -39,3 +37,10 @@ When executing full-stack tasks, ensure your work adheres to the latest industry
 - **CI/CD:** Understand basic GitHub Actions/GitLab CI pipelines for running linters and tests before merging.
 - **Environment Parity:** Ensure development, staging, and production environments match as closely as possible using Docker or consistent `.env` configurations.
 - **Monitoring & Logging:** Log critical application errors and performance bottlenecks (e.g., Sentry, Datadog) without exposing PII or credentials.
+
+## See Also
+
+- `backend` — API design, database, architecture patterns
+- `frontend` — component design, state management, performance
+- `owasp` — full security checklist
+- `docker` — containerization and Docker Compose standards

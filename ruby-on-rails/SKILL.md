@@ -1,6 +1,6 @@
 ---
 name: ruby-on-rails
-description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x-8.x) apps, including Docker, RSpec, migrations, and security.
+description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x-8.x) apps, including RSpec, migrations, security, and debugging.
 ---
 
 # Ruby on Rails Skill
@@ -26,22 +26,6 @@ description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x
 - Add RSpec separately: `rails generate rspec:install`.
 - Ask for requirements before deviating from the default command.
 
-## Docker Commands (Default Dev Environment)
-
-When `docker-compose.yml` or `compose.yml` exists, Docker is the default runtime for linting, tests, and Rails commands.
-
-```bash
-# Run any command
-docker compose run --rm -e RUBYOPT='-W0' <container_name> <command>
-
-# Common commands
-docker compose run --rm -e RUBYOPT='-W0' <container_name> rails c
-docker compose run --rm -e RUBYOPT='-W0' <container_name> rails db:migrate
-docker compose run --rm -e RUBYOPT='-W0' <container_name> rspec <spec_path>
-docker compose run --rm -e RUBYOPT='-W0' <container_name> rails g <generator> <args>
-docker compose run --rm -e RUBYOPT='-W0' <container_name> bundle exec rubocop <file> --autocorrect
-```
-
 ## Code Style
 
 - 2-space indentation; single quotes unless interpolation needed.
@@ -57,19 +41,9 @@ docker compose run --rm -e RUBYOPT='-W0' <container_name> bundle exec rubocop <f
 - Service objects in `app/services/`; concerns in `app/models/concerns/` and `app/controllers/concerns/`.
 - When creating a new component, use existing components as reference — never invent new structures when they exist.
 
-## Legacy Rails Patterns
+## Legacy Projects (4.x–6.x)
 
-### Rails 5.x
-
-- `ApplicationRecord` base class for models.
-- `belongs_to` required by default (use `optional: true` if needed).
-- Strong parameters in controllers.
-
-### Rails 4.x
-
-- No `ApplicationRecord` — use `ActiveRecord::Base` directly.
-- `attr_accessible` for mass assignment protection.
-- `before_filter` instead of `before_action`.
+Follow existing patterns; never suggest upgrading unless explicitly asked. Key differences: Rails 4.x uses `ActiveRecord::Base`, `attr_accessible`, `before_filter`. Rails 5.x adds `ApplicationRecord`, requires `belongs_to` by default.
 
 ## Testing (RSpec)
 
@@ -256,3 +230,10 @@ puts "URL: /controller/action/#{record.id}"
 ```
 
 Naming: `<feature>_test_data.rb` (e.g., `orders_test_data.rb`). Always add `# DO NOT MERGE THIS FILE` header.
+
+## See Also
+
+- `ruby` — language conventions, RuboCop, guard clauses
+- `rails-migration` — migration patterns and cascade changes across MVC
+- `postgresql` / `mysql-mariadb` — database-specific query patterns and indexing
+- `owasp` — full security checklist
