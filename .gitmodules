@@ -1,0 +1,3 @@
+[submodule "start"]
+	path = start
+	url = https://github.com/jcchikikomori/skills-md-dev-orchestrator.git
