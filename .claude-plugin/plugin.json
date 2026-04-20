@@ -1,55 +1,13 @@
 {
   "name": "skills-md",
   "description": "Skills Repository for Claude Code",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "author": {
     "name": "John Cyrill Corsanes",
     "url": "https://github.com/jcchikikomori"
   },
+  "homepage": "https://github.com/jcchikikomori/skills-md",
+  "repository": "https://github.com/jcchikikomori/skills-md.git",
   "license": "MIT",
-  "repository": "https://github.com/jcchikikomori/skills-md",
-  "keywords": ["claude", "plugin", "skills", "repository", "markdown"],
-  "skills": [
-    {
-      "name": "Skill Repository",
-      "description": "A repository of skills for Claude Code, allowing users to easily find and utilize various skills in their projects.",
-      "endpoint": "/skills",
-      "method": "GET",
-      "parameters": {
-        "category": {
-          "type": "string",
-          "description": "Filter skills by category (e.g., 'data-processing', 'web-development', 'machine-learning')."
-        },
-        "difficulty": {
-          "type": "string",
-          "description": "Filter skills by difficulty level (e.g., 'beginner', 'intermediate', 'advanced')."
-        }
-      },
-      "response": {
-        "type": "array",
-        "items": {
-          "name": {
-            "type": "string",
-            "description": "The name of the skill."
-          },
-          "description": {
-            "type": "string",
-            "description": "A brief description of the skill."
-          },
-          "category": {
-            "type": "string",
-            "description": "The category of the skill."
-          },
-          "difficulty": {
-            "type": "string",
-            "description": "The difficulty level of the skill."
-          },
-          "url": {
-            "type": "string",
-            "description": "A URL to more information about the skill."
-          }
-        }
-      }
-    }
-  ]
+  "keywords": ["claude", "plugin", "skills", "repository", "markdown"]
 }
