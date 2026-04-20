@@ -50,7 +50,7 @@ Rules:
 | ------- | ------- |
 | Language | `python`, `ruby`, `java`, `php` |
 | Framework | `fastapi`, `ruby-on-rails`, `spring-boot` |
-| Database | `postgresql`, `mysql-mariadb`, `oracle-sql` |
+| Database | `postgresql`, `mysql`, `oracle-sql` |
 | Platform/Tool | `docker`, `kubernetes`, `git` |
 | Concern | `owasp`, `web-accessibility`, `debug` |
 | Architecture | `backend`, `frontend`, `fullstack` |
@@ -64,4 +64,4 @@ Both Claude Code and opencode use the same SKILL.md format. Avoid Claude Code-sp
 
 ## Current Skills Inventory
 
-34 skills across: languages (python, ruby, java, php, nodejs), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql-mariadb, oracle-sql), ORMs (sqlalchemy, pydantic, rails-migration), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git), security/quality (owasp, web-accessibility, web-audit), mobile (android), and workflow (debug, docu-component, what-is-this, shared-templates).
+33 skills across: languages (python, ruby, java, php, nodejs), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql, oracle-sql), ORMs (sqlalchemy, pydantic, rails-migration), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git), security/quality (owasp, web-accessibility, web-audit), mobile (android), and workflow (debug, docu-component, what-is-this, shared-templates, markdown).
