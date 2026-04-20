@@ -16,18 +16,21 @@ It has `what-is-this` skill that help developers understand new/existing project
 
 ## Setup
 
+This requires installation of my workflow marketplace.
+<https://github.com/jcchikikomori/claude-workflow>
+
 Just execute this
 
 ```bash
-claude plugin marketplace add jcchikikomori/skills-md
-claude plugin install skills@skills-md
+claude plugin marketplace add jcchikikomori/claude-workflow
+claude plugin install skills-md@claude-workflow
 ```
 
 ### Setup inside Claude
 
 ```shell
-/plugin marketplace add jcchikikomori/skills-md
-/plugin install skills@skills-md
+/plugin marketplace add jcchikikomori/claude-workflow
+/plugin install skills-md@claude-workflow
 ```
 
 ### Setup inside opencode
