@@ -32,9 +32,19 @@ claude plugin install skills@skills-md
 
 ### Setup inside opencode
 
-Copy all of the folders, except `.claude` & `.claude-plugins`, and paste them into:
+Run the install script:
 
-- Global settings: `$HOME/.config/opencode/skills/`
+```bash
+# Global install
+./install.sh
+
+# Per-project install
+./install.sh --project /path/to/your-project
+```
+
+Or copy manually — all folders under `skills/` into:
+
+- Global: `$HOME/.config/opencode/skills/`
 - Per-project: `<project>/.opencode/skills/`
 
 ### Notice
