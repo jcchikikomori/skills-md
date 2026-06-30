@@ -64,4 +64,4 @@ Both Claude Code and opencode use the same SKILL.md format. Avoid Claude Code-sp
 
 ## Current Skills Inventory
 
-35 skills across: languages (python, ruby, java, php, nodejs), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql, oracle-sql), ORMs (sqlalchemy, pydantic, rails-migration), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git, git-conflict-resolution), security/quality (owasp, web-accessibility, web-audit), mobile (android), and workflow (debug, docu-component, what-is-this, shared-templates, markdown, llm-config-export).
+36 skills across: languages (python, ruby, java, php, nodejs, css), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql, oracle-sql), ORMs (sqlalchemy, pydantic, rails-migration), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git, git-conflict-resolution), security/quality (owasp, web-accessibility, web-audit), mobile (android), and workflow (debug, docu-component, what-is-this, shared-templates, markdown, llm-config-export).
