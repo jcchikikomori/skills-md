@@ -12,10 +12,10 @@ It's basically my skills repository based on the following information
 
 ## Skills
 
-**36 skills** across 8 domains:
+**37 skills** across 8 domains:
 
 | Domain | Skills |
-|--------|--------|
+| -------- | -------- |
 | Languages | `python`, `ruby`, `java`, `php`, `nodejs`, `css` |
 | Frameworks | `fastapi`, `ruby-on-rails`, `spring-boot`, `grails`, `reactjs`, `vuejs`, `angularjs` |
 | Databases | `postgresql`, `mysql`, `oracle-sql` |
@@ -24,7 +24,7 @@ It's basically my skills repository based on the following information
 | Infrastructure | `docker`, `kubernetes`, `git`, `git-conflict-resolution` |
 | Security/Quality | `owasp`, `web-accessibility`, `web-audit` |
 | Mobile | `android` |
-| Workflow | `debug`, `docu-component`, `what-is-this`, `shared-templates`, `markdown`, `llm-config-export` |
+| Workflow | `debug`, `docu-component`, `what-is-this`, `shared-templates`, `markdown`, `llm-config-export`, `peer-review` |
 
 ## Unique Features
 
