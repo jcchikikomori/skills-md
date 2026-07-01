@@ -18,11 +18,13 @@ description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x
 
 - Use latest stable Ruby (3.3.x) and Rails (7.2.x or 8.x if stable).
 - Default scaffold command:
+
   ```bash
   rails new <app_name> --database=<db_engine> \
     --skip-action-mailbox --skip-action-text --skip-active-storage \
     --skip-action-cable --skip-test --skip-system-test
   ```
+
 - Add RSpec separately: `rails generate rspec:install`.
 - Ask for requirements before deviating from the default command.
 
@@ -44,6 +46,10 @@ description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x
 ## Legacy Projects (4.x–6.x)
 
 Follow existing patterns; never suggest upgrading unless explicitly asked. Key differences: Rails 4.x uses `ActiveRecord::Base`, `attr_accessible`, `before_filter`. Rails 5.x adds `ApplicationRecord`, requires `belongs_to` by default.
+
+## Upgrading Ruby/Rails
+
+Watch for known breaking changes when upgrading, or when writing new code on a codebase mid-upgrade (e.g., Ruby 3.x kwargs handling, Rails 7.1 `Object#with`). Full details: [reference.md](./reference.md).
 
 ## Testing (RSpec)
 
@@ -233,7 +239,8 @@ Naming: `<feature>_test_data.rb` (e.g., `orders_test_data.rb`). Always add `# DO
 
 ## See Also
 
+- [upgrading.md](./references/upgrading.md) — Ruby/Rails version upgrade gotchas
 - `ruby` — language conventions, RuboCop, guard clauses
-- `rails-migration` — migration patterns and cascade changes across MVC
+- `ruby-on-rails-migrate` — migration patterns and cascade changes across MVC
 - `postgresql` / `mysql-mariadb` — database-specific query patterns and indexing
 - `owasp` — full security checklist

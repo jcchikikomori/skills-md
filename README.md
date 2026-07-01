@@ -19,7 +19,7 @@ It's basically my skills repository based on the following information
 | Languages | `python`, `ruby`, `java`, `php`, `nodejs`, `css` |
 | Frameworks | `fastapi`, `ruby-on-rails`, `spring-boot`, `grails`, `reactjs`, `vuejs`, `angularjs` |
 | Databases | `postgresql`, `mysql`, `oracle-sql` |
-| ORMs | `sqlalchemy`, `pydantic`, `rails-migration` |
+| ORMs | `sqlalchemy`, `pydantic`, `ruby-on-rails-migrate` |
 | Architecture | `backend`, `frontend`, `fullstack` |
 | Infrastructure | `docker`, `kubernetes`, `git`, `git-conflict-resolution` |
 | Security/Quality | `owasp`, `web-accessibility`, `web-audit` |

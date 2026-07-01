@@ -1,5 +1,5 @@
 ---
-name: rails-migration
+name: ruby-on-rails-migrate
 description: Create Ruby on Rails database migrations and cascade changes across the full MVC stack including models, controllers, views, and tests.
 ---
 
