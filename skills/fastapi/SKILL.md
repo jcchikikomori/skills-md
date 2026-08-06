@@ -1,6 +1,6 @@
 ---
 name: fastapi
-description: FastAPI framework patterns, dependency injection, routing, and integration with SQLAlchemy and Pydantic.
+description: FastAPI framework patterns, dependency injection, routing, and integration with SQLAlchemy and Pydantic. Use when building or reviewing FastAPI endpoints.
 ---
 
 # FastAPI Skill
@@ -42,6 +42,7 @@ app/
 
 - Use `Depends()` for shared logic: DB sessions, auth, pagination.
 - Define a `get_db()` generator that yields a SQLAlchemy session and closes it after the request.
+
   ```python
   def get_db() -> Generator:
       db = SessionLocal()
@@ -50,6 +51,7 @@ app/
       finally:
           db.close()
   ```
+
 - Use `Security(get_current_user, scopes=["admin"])` for scoped auth.
 
 ## Authentication

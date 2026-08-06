@@ -1,6 +1,6 @@
 ---
 name: oracle-sql
-description: Oracle SQL coding standards, query optimization, indexing, PL/SQL best practices, and security.
+description: Oracle SQL coding standards, query optimization, indexing, PL/SQL best practices, and security. Use when writing or reviewing Oracle SQL or PL/SQL.
 ---
 
 # Oracle SQL Skill
@@ -72,7 +72,7 @@ INSERT INTO users (id, name) VALUES (users_seq.NEXTVAL, 'Alice');
 ## Naming Conventions
 
 | Object | Convention | Example |
-|---|---|---|
+| --- | --- | --- |
 | Table | snake_case, plural | `user_accounts` |
 | Column | snake_case | `created_at` |
 | Index | `idx_<table>_<columns>` | `idx_users_email` |

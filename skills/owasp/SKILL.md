@@ -1,6 +1,6 @@
 ---
 name: owasp
-description: OWASP Top 10 security principles, input handling, auth, output encoding, and secure coding checklist.
+description: OWASP Top 10 security principles, input handling, auth, output encoding, and a secure coding checklist. Use when reviewing code for security or running a security audit.
 ---
 
 # OWASP Security Skill
@@ -75,6 +75,7 @@ Apply OWASP thinking for **all features**, especially input handling, authentica
 ## SAST / Code Review Security Checklist
 
 Before merging, verify:
+
 - [ ] No SQL injection vectors (parameterized queries used everywhere).
 - [ ] No XSS vectors (output encoded; no raw `html_safe` / `innerHTML` with user data).
 - [ ] No hardcoded secrets, API keys, or passwords.

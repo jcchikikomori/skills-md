@@ -1,6 +1,6 @@
 ---
 name: git-conflict-resolution
-description: Resolve git merge and rebase conflicts. Use when you have WIP changes to stash before pulling, are mid-conflict with <<<< markers, or need fetch+rebase workflow. Covers stash-pull-pop, fetch+rebase, conflict markers, per-file resolution, checkout --ours/--theirs, abort/recovery, and rerere.
+description: Resolve git merge/rebase conflicts. Use when stashing WIP before pulling, mid-conflict with <<<< markers, or running a fetch+rebase. Covers stash-pull-pop, conflict markers, checkout --ours/--theirs, and abort/recovery.
 ---
 
 # Git Conflict Resolution
@@ -16,7 +16,7 @@ For the upstream-integration decision (merge vs. rebase), spec/test impact, and 
 ## Choosing Your Path
 
 | Situation | Approach |
-|---|---|
+| --- | --- |
 | Clean working tree, no WIP | Fetch + rebase (recommended) |
 | WIP changes on branch | Stash workflow below |
 | Already mid-merge conflict | Jump to [Resolving Conflicts](#resolving-conflicts) |
@@ -102,7 +102,7 @@ incoming changes
 For each conflicted file, pick one of:
 
 | Option | Command |
-|---|---|
+| --- | --- |
 | Keep your version entirely | `git checkout --ours <file>` |
 | Keep incoming version entirely | `git checkout --theirs <file>` |
 | Manual edit | Open file, delete all markers, craft correct result |

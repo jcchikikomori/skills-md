@@ -1,6 +1,6 @@
 ---
 name: pydantic
-description: Pydantic v2 usage for data validation, settings management, and schema design in Python projects.
+description: Pydantic v2 usage for data validation, settings management, and schema design. Use when defining or reviewing Pydantic models in Python projects.
 ---
 
 # Pydantic Skill
@@ -94,6 +94,7 @@ json_str = user.model_dump_json()               # To JSON string (replaces .json
 ## Testing
 
 - Test validation errors explicitly:
+
   ```python
   from pydantic import ValidationError
 
@@ -101,5 +102,6 @@ json_str = user.model_dump_json()               # To JSON string (replaces .json
       with pytest.raises(ValidationError):
           UserCreate(name="Alice", email="not-an-email", age=25)
   ```
+
 - Test that serialization produces the correct literal values (not method calls).
 - Target **≥95% coverage** on schema-related logic.

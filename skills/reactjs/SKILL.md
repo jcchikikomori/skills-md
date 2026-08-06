@@ -1,6 +1,6 @@
 ---
 name: reactjs
-description: React.js best practices, hooks, state management, component patterns, performance, and team coding conventions.
+description: React.js best practices covering hooks, state management, component patterns, performance, and team conventions. Use when writing or reviewing React code.
 ---
 
 # React.js Skill

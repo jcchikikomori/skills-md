@@ -1,6 +1,6 @@
 ---
 name: markdown
-description: Markdown writing standards, auto-formatting via MCP tools (markitdown, linter), and verification workflow for .md and .mdx files.
+description: Markdown writing standards, auto-formatting via MCP tools (markitdown, linter), and verification workflow. Use when reading, editing, or verifying any .md or .mdx file.
 ---
 
 # Markdown Skill

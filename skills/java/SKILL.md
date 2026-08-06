@@ -1,6 +1,6 @@
 ---
 name: java
-description: Java coding standards, design patterns, modern Java features, OWASP security, and team conventions.
+description: Java coding standards, design patterns, modern Java features, OWASP security, and team conventions. Use when writing or reviewing Java code.
 ---
 
 # Java Skill

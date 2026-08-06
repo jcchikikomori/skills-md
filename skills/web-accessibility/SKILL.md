@@ -1,6 +1,6 @@
 ---
 name: web-accessibility
-description: WCAG 2.2 standards implementation guide. Covers POUR principles, AA/AAA conformance, ARIA, keyboard navigation, and assistive technology testing.
+description: WCAG 2.2 implementation guide covering POUR principles, AA/AAA conformance, ARIA, keyboard navigation, and assistive-tech testing. Use when building or auditing accessible UI.
 ---
 
 # Web Accessibility Skill
@@ -10,7 +10,7 @@ WCAG 2.2 is the current W3C recommendation (October 2023). Target: **AA minimum*
 ## POUR Principles
 
 | Principle | Key Requirement |
-|-----------|----------------|
+| ----------- | ---------------- |
 | **Perceivable** | Text alternatives, captions, adaptable layout, sufficient contrast |
 | **Operable** | Keyboard accessible, enough time, no seizure triggers, navigable |
 | **Understandable** | Readable, predictable, input assistance |
@@ -19,7 +19,7 @@ WCAG 2.2 is the current W3C recommendation (October 2023). Target: **AA minimum*
 ## Conformance Levels
 
 | Level | Contrast | Target Size | Notes |
-|-------|----------|-------------|-------|
+| ------- | ---------- | ------------- | ------- |
 | **A** | — | — | Minimum; covers semantic HTML, keyboard, alt text |
 | **AA** | 4.5:1 text / 3:1 UI | 24x24px | **Required minimum** |
 | **AAA** | 7:1 text / 4.5:1 large | 44x44px | Preferred goal |
@@ -52,7 +52,7 @@ WCAG 2.2 is the current W3C recommendation (October 2023). Target: **AA minimum*
 ## Testing Tools
 
 | Tool | Type | Use When |
-|------|------|----------|
+| ------ | ------ | ---------- |
 | **axe DevTools** | Browser extension | Developer testing |
 | **WAVE** | Browser extension | Quick visual check |
 | **Lighthouse** | Chrome DevTools / CI | Automated pipeline |
@@ -63,7 +63,7 @@ WCAG 2.2 is the current W3C recommendation (October 2023). Target: **AA minimum*
 ## WCAG 2.2 New Criteria
 
 | Criterion | Level | Description |
-|-----------|-------|-------------|
+| ----------- | ------- | ------------- |
 | **2.4.11** Focus Not Obscured (Minimum) | AA | Focused element not completely hidden |
 | **2.4.12** Focus Not Obscured (Enhanced) | AAA | No part of focused element hidden |
 | **2.4.13** Focus Appearance | AAA | Focus indicator size/contrast requirements |

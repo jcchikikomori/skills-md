@@ -1,6 +1,6 @@
 ---
 name: ruby-on-rails
-description: Ruby on Rails development for both legacy (4.x-6.x) and modern (7.x-8.x) apps, including RSpec, migrations, security, and debugging.
+description: Ruby on Rails development for legacy (4.x-6.x) and modern (7.x-8.x) apps, covering RSpec, migrations, security, and debugging. Use when writing or reviewing Rails code.
 ---
 
 # Ruby on Rails Skill

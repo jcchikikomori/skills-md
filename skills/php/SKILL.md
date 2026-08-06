@@ -1,6 +1,6 @@
 ---
 name: php
-description: PHP coding standards following PSR, strict types, OWASP security principles, and team coding conventions.
+description: PHP coding standards following PSR, strict types, OWASP security principles, and team conventions. Use when writing or reviewing PHP code.
 ---
 
 # PHP Skill

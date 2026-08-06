@@ -1,6 +1,6 @@
 ---
 name: llm-config-export
-description: Export Claude Code or opencode configuration — settings, plugins, MCPs, skills, memories, custom instructions, plans, and tasks — to a portable bundle. Use when the user wants to back up, migrate, or share their AI assistant setup, even if they just say "export my config", "backup my settings", or "move to a new machine".
+description: Export Claude Code or opencode configuration (settings, plugins, MCPs, skills, memories, plans, tasks) to a portable bundle. Use when the user wants to back up, migrate, or share their AI assistant setup.
 ---
 
 # LLM Config Export
@@ -99,7 +99,7 @@ Full schema in [reference.md → Manifest Schema](./reference.md#manifest-schema
 Present this default set and let the user override:
 
 | Category | Default |
-|---|---|
+| --- | --- |
 | Global settings (`settings.json`) | ✓ include |
 | Project settings (`.claude/settings*.json`) | ✓ include |
 | Custom instructions (`CLAUDE.md`) | ✓ include |
@@ -169,7 +169,7 @@ tar -czf ~/Documents/llm-config-export-<date>.tar.gz ~/Documents/llm-config-expo
 Never include by default — these require explicit opt-in:
 
 | File | Why excluded |
-|---|---|
+| --- | --- |
 | `~/.claude/credentials.json` | Auth tokens — rotate after migration, never share |
 | `~/.claude/history.jsonl` | Full conversation history — large and personal |
 | `~/.claude/transcripts/` | Session transcripts |

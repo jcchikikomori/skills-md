@@ -1,6 +1,6 @@
 ---
 name: nodejs
-description: Node.js best practices, async patterns, error handling, security, and team coding conventions.
+description: Node.js best practices, async patterns, error handling, security, and team conventions. Use when writing or reviewing Node.js code.
 ---
 
 # Node.js Skill

@@ -1,6 +1,6 @@
 ---
 name: mysql
-description: MySQL and MariaDB coding standards, query optimization, indexing, migrations, and security best practices.
+description: MySQL and MariaDB coding standards, query optimization, indexing, migrations, and security. Use when writing or reviewing MySQL/MariaDB queries or schemas.
 ---
 
 # MySQL / MariaDB Skill
@@ -60,9 +60,11 @@ Always filter `WHERE deleted_at IS NULL` in application queries.
 - Use `EXISTS` instead of `IN` with large subqueries.
 - Use `INSERT ... ON DUPLICATE KEY UPDATE` for upsert operations.
 - Batch large `UPDATE`/`DELETE` operations to avoid long locks:
+
   ```sql
   DELETE FROM logs WHERE created_at < DATE_SUB(NOW(), INTERVAL 90 DAY) LIMIT 1000;
   ```
+
 - Commit in batches for large DML to reduce lock contention.
 
 ## Transactions

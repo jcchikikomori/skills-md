@@ -1,6 +1,6 @@
 ---
 name: angularjs
-description: AngularJS (1.x) coding conventions, component patterns, security, and migration guidance to Angular 2+.
+description: AngularJS (1.x) coding conventions, component patterns, security, and migration guidance to Angular 2+. Use when writing, reviewing, or migrating AngularJS 1.x code.
 ---
 
 # AngularJS Skill

@@ -1,6 +1,6 @@
 ---
 name: git
-description: Git workflow rules for this machine. GPG-signed commits required, opencode sessions cannot commit. Focus on staging (git add), reading, and branch management.
+description: Git workflow rules for this machine—GPG-signed commits required, opencode sessions cannot commit, focus on staging/reading/branches. Use when running any git operation.
 ---
 
 # Git Rules
@@ -16,16 +16,19 @@ description: Git workflow rules for this machine. GPG-signed commits required, o
 Run these steps in order before integrating upstream changes:
 
 1. **Fetch upstream**
+
    ```bash
    git fetch origin
    ```
 
 2. **Check divergence** — commits on target not yet on current branch
+
    ```bash
    git log HEAD..origin/<target> --oneline
    ```
 
 3. **Check overlapping file changes**
+
    ```bash
    git diff --name-only HEAD...origin/<target>
    ```

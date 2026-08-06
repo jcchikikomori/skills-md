@@ -1,13 +1,13 @@
 ---
 name: ruby
-description: Ruby coding standards following RuboCop, guard clauses, TDD with RSpec, and OWASP security principles.
+description: Ruby coding standards following RuboCop, guard clauses, TDD with RSpec, and OWASP security principles. Use when writing or reviewing Ruby code.
 ---
 
 # Ruby Skill
 
 ## Style & Conventions
 
-- Follow the **RuboCop Ruby Style Guide**: https://github.com/rubocop/ruby-style-guide
+- Follow the **RuboCop Ruby Style Guide**: <https://github.com/rubocop/ruby-style-guide>
 - Always follow the repository's existing **RuboCop config** — run `bundle exec rubocop` before finalizing changes.
 - 2-space indentation.
 - Single quotes for strings; double quotes only when interpolation or special chars are needed.
@@ -66,7 +66,7 @@ end
 ## Testing (RSpec + TDD)
 
 - Prioritize **TDD**: write tests first. If not feasible, add tests immediately after.
-- Follow RSpec best practices: http://www.betterspecs.org/
+- Follow RSpec best practices: <http://www.betterspecs.org/>
 - All specs require `rails_helper` (or `spec_helper` for pure Ruby).
 - Use `let` for test data instead of instance variables.
 - Use `is_expected` over `should`.

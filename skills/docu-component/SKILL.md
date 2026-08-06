@@ -1,6 +1,6 @@
 ---
 name: docu-component
-description: Document and explain components, files, classes, and code. Generate API documentation, usage examples, and understand unfamiliar code.
+description: Documents and explains components, files, classes, and code, generating API docs and usage examples. Use when documenting a new module or explaining unfamiliar code.
 ---
 
 # Component Documentation Skill

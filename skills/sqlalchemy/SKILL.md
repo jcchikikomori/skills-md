@@ -1,6 +1,6 @@
 ---
 name: sqlalchemy
-description: SQLAlchemy ORM patterns, query best practices, migrations with Alembic, and avoiding N+1 queries.
+description: SQLAlchemy ORM patterns, query best practices, migrations with Alembic, and avoiding N+1 queries. Use when writing or reviewing SQLAlchemy models or queries.
 ---
 
 # SQLAlchemy Skill

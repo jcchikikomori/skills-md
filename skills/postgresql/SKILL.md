@@ -1,6 +1,6 @@
 ---
 name: postgresql
-description: PostgreSQL coding standards, query optimization, indexing, migrations, and security best practices. Initial scaffold.
+description: PostgreSQL coding standards, query optimization, indexing, migrations, and security best practices. Use when writing or reviewing PostgreSQL queries or schemas.
 ---
 
 # PostgreSQL Skill
@@ -61,6 +61,7 @@ description: PostgreSQL coding standards, query optimization, indexing, migratio
 ### 6. Common Safe Query Patterns
 
 **Basic SELECT with WHERE and ORDER BY:**
+
 ```sql
 SELECT user_id, username, email
 FROM users
@@ -70,6 +71,7 @@ LIMIT $3 OFFSET $4;
 ```
 
 **JOIN with aggregation:**
+
 ```sql
 SELECT u.user_id, u.username, COUNT(o.order_id) AS order_count
 FROM users u
@@ -81,6 +83,7 @@ ORDER BY order_count DESC;
 ```
 
 **CTE (Common Table Expression) for complex queries:**
+
 ```sql
 WITH active_users AS (
   SELECT user_id, username
@@ -94,6 +97,7 @@ GROUP BY au.user_id, au.username;
 ```
 
 **Upsert (INSERT ... ON CONFLICT):**
+
 ```sql
 INSERT INTO users (user_id, username, email)
 VALUES ($1, $2, $3)
@@ -111,6 +115,7 @@ SET email = EXCLUDED.email, updated_at = NOW();
 ## Output Format
 
 When generating SQL or migration scripts, provide:
+
 1. A brief explanation of the logic and any optimization choices
 2. The SQL code with comments for non-obvious sections
 3. Any indexing or constraint recommendations

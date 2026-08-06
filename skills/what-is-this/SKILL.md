@@ -1,6 +1,6 @@
 ---
 name: what-is-this
-description: Help developers understand new projects including tech stack detection, setup instructions, architecture overview, and getting started guides.
+description: Helps developers understand new projects, covering tech stack detection, setup instructions, architecture overview, and getting-started guides. Use when onboarding to an unfamiliar codebase.
 ---
 
 # Project Onboarding Skill

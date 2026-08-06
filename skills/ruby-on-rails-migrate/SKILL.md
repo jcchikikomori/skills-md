@@ -1,6 +1,6 @@
 ---
 name: ruby-on-rails-migrate
-description: Create Ruby on Rails database migrations and cascade changes across the full MVC stack including models, controllers, views, and tests.
+description: Create Ruby on Rails database migrations and cascade changes across models, controllers, views, and tests. Use when adding or changing a Rails DB migration.
 ---
 
 # Rails Migration & Cascade Skill
@@ -16,7 +16,7 @@ When this skill is loaded, **immediately determine the database adapter** using 
 Scan `Gemfile` and `Gemfile.lock` for DB adapter gems:
 
 | Gem found | DB Skill / guidance |
-|---|---|
+| --- | --- |
 | `mysql2` | Load `mysql-mariadb` skill |
 | `trilogy` | Load `mysql-mariadb` skill |
 | `pg` | Load `postgresql` skill |
@@ -29,7 +29,7 @@ Scan `Gemfile` and `Gemfile.lock` for DB adapter gems:
 Read `config/database.yml` and check the `adapter:` field for each environment:
 
 | `adapter:` value | DB Skill / guidance |
-|---|---|
+| --- | --- |
 | `mysql2` or `trilogy` | Load `mysql-mariadb` skill |
 | `postgresql` or `postgis` | Load `postgresql` skill |
 | `oracle_enhanced` | Load `oracle-sql` skill |
@@ -38,6 +38,7 @@ Read `config/database.yml` and check the `adapter:` field for each environment:
 ### Anti-Default Rule
 
 **Do NOT load `oracle-sql` by default** when a Rails migration context is detected. Oracle guidance is **only** appropriate when:
+
 - Gemfile/Gemfile.lock contains `activerecord-oracle_enhanced-adapter` or `ruby-oci8`, **OR**
 - `config/database.yml` explicitly uses `adapter: oracle_enhanced`
 
@@ -56,6 +57,7 @@ grep 'adapter:' config/database.yml 2>/dev/null
 ```
 
 Expected outcomes:
+
 - `mysql2` or `trilogy` found → `mysql-mariadb` skill
 - `pg` found → `postgresql` skill
 - `oracle_enhanced`/`ruby-oci8` found → `oracle-sql` skill
@@ -66,12 +68,15 @@ Expected outcomes:
 ## Core Migration Workflow
 
 ### 1. Planning & Generation
+
 Before writing code, verify:
+
 - Field type (string, integer, boolean, JSONB)
 - Database constraints (null: false, defaults, indexing)
 - Use the generator: `rails generate migration Add[Field]To[Table] [field]:[type]`
 
 ### 2. Component Cascade Checklist
+
 Every time a database column is added, you MUST cascade the change to these files:
 
 - **1. Database (`db/migrate/...`)**
@@ -89,6 +94,7 @@ Every time a database column is added, you MUST cascade the change to these file
   - Write test proving validation works.
 
 ### Output Format
+
 When handling a migration, structure your response as follows:
 
 ```markdown

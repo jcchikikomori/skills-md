@@ -1,6 +1,6 @@
 ---
 name: shared-templates
-description: Shared output format templates and reference sections for development agents to ensure consistent documentation and responses.
+description: Shared output format templates and reference sections other skills reuse for consistent documentation and responses. Use when another skill references a shared template section.
 ---
 
 # Agent Shared Templates & References
@@ -45,6 +45,7 @@ Use this structure when starting a new task:
 ```
 
 ### Task Icons by Type
+
 - 🎨 Frontend: UI components, styling, responsive design
 - ⚙️ Backend: APIs, databases, business logic
 - 🚀 Full Stack: End-to-end features, refactoring
@@ -58,8 +59,9 @@ Use this structure when starting a new task:
 ## Shared Tools Reference
 
 ### Database Tools
+
 | Task | Command |
-|------|---------|
+| ------ | --------- |
 | MySQL | `mysql -u user -p database` |
 | PostgreSQL | `psql database_name` |
 | Query analyze | `EXPLAIN ANALYZE [query]` |
@@ -72,6 +74,7 @@ Use this structure when starting a new task:
 ### By Roadmap Category
 
 **Frontend Development**
+
 - Roadmap: [roadmap.sh/frontend](https://roadmap.sh/frontend)
 - GitHub: [kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/roadmaps/frontend)
 - React Docs: [react.dev](https://react.dev)
@@ -81,6 +84,7 @@ Use this structure when starting a new task:
 - Performance: [web.dev](https://web.dev), [web.dev/vitals](https://web.dev/vitals/)
 
 **Backend Development**
+
 - Roadmap: [roadmap.sh/backend](https://roadmap.sh/backend)
 - GitHub: [kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/roadmaps/backend)
 - REST API Design: [restfulapi.net](https://restfulapi.net/)
@@ -90,6 +94,7 @@ Use this structure when starting a new task:
 - Security: [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
 **Full Stack Development**
+
 - Roadmap: [roadmap.sh/full-stack](https://roadmap.sh/full-stack)
 - GitHub: [kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap/tree/master/src/data/roadmaps/full-stack)
 - Rails Guides: [guides.rubyonrails.org](https://guides.rubyonrails.org/)
@@ -188,6 +193,7 @@ Use this structure when starting a new task:
 ### Unit Testing
 
 **Rails/RSpec Pattern**
+
 ```ruby
 RSpec.describe Model do
   describe '#method_name' do
@@ -201,6 +207,7 @@ end
 ```
 
 **Node/Jest Pattern**
+
 ```javascript
 describe('function name', () => {
   it('returns expected value', () => {
@@ -210,6 +217,7 @@ describe('function name', () => {
 ```
 
 **Python/Pytest Pattern**
+
 ```python
 def test_function():
     result = function()
@@ -219,6 +227,7 @@ def test_function():
 ### Integration Testing
 
 **Rails Request Spec Pattern**
+
 ```ruby
 RSpec.describe 'POST /api/v1/users', type: :request do
   it 'creates user' do
@@ -229,6 +238,7 @@ end
 ```
 
 ### E2E Testing Reference
+
 - **Cypress**: [cypress.io](https://www.cypress.io/)
 - **Playwright**: [playwright.dev](https://playwright.dev/)
 - **WebDriver**: [w3c.github.io/webdriver/](https://w3c.github.io/webdriver/)
@@ -257,4 +267,3 @@ All development agents follow this general workflow:
 3. **For accessibility**: Use "WCAG 2.1 Quick Check" then load `web-accessibility` skill for details
 4. **For learning paths**: Use "Shared Learning Resources" section
 5. **For database commands**: Use "Database Tools" section
-

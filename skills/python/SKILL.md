@@ -1,6 +1,6 @@
 ---
 name: python
-description: Python best practices following PEP 8, ruff, type hints, and lightweight design patterns for developers coming from PHP, Java, or Ruby.
+description: Python best practices following PEP 8, ruff, type hints, and lightweight design patterns, aimed at developers coming from PHP, Java, or Ruby. Use when writing or reviewing Python code.
 ---
 
 # Python Skill
@@ -50,6 +50,7 @@ description: Python best practices following PEP 8, ruff, type hints, and lightw
 - Use **pytest**; write tests for every change. Target **≥95% coverage**.
 - Use `@pytest.fixture` for setup/teardown (like RSpec's `let` / `before`).
 - Expectations must compare to **literal values**, not method calls:
+
   ```python
   # GOOD
   assert result.status_code == 200
@@ -57,6 +58,7 @@ description: Python best practices following PEP 8, ruff, type hints, and lightw
   # BAD
   assert result.status_code == expected.code
   ```
+
 - Use `pytest-mock` (`mocker`) for mocking external dependencies.
 - Use `hypothesis` for property-based testing of complex logic.
 

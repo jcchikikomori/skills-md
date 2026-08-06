@@ -1,6 +1,6 @@
 ---
 name: vuejs
-description: Vue.js 3 best practices, Composition API, Pinia, security, and team coding conventions.
+description: Vue.js 3 best practices covering Composition API, Pinia, security, and team conventions. Use when writing or reviewing Vue.js code.
 ---
 
 # Vue.js Skill

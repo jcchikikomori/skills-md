@@ -1,6 +1,6 @@
 ---
 name: css
-description: CSS and SASS/SCSS best practices including 7-1 architecture, avoiding inline styles, external file organization, and performance optimization.
+description: CSS and SASS/SCSS best practices including 7-1 architecture, avoiding inline styles, external file organization, and performance. Use when writing or reviewing CSS/SCSS.
 ---
 
 # CSS Developer Skill
@@ -20,7 +20,7 @@ Inline CSS is an anti-pattern. Do not write `style="..."` attributes in HTML or 
 ### Why Inline CSS Is Harmful
 
 | Issue | Explanation |
-|-------|-------------|
+| ------- | ------------- |
 | **Specificity hell** | Inline styles have the highest specificity (`1,0,0,0`). They override everything and make overrides impossible without `!important`, which compounds the problem. |
 | **No reuse** | Every inline style is a one-off. Duplication spreads across the codebase. |
 | **No media queries** | Inline styles cannot respond to `@media` breakpoints. Responsive design becomes impossible. |
@@ -262,7 +262,7 @@ $shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1);
 Choose one methodology and stick to it across the project.
 
 | Methodology | Best For | Key Idea |
-|-------------|----------|----------|
+| ------------- | ---------- | ---------- |
 | **BEM** | Traditional multi-page apps | `.block__element--modifier` |
 | **CSS Modules** | Component-based frameworks (React, Vue) | Scoped class names via build tool |
 | **Utility-First (Tailwind)** | Rapid prototyping, design systems | Composable utility classes |
@@ -288,7 +288,7 @@ Choose one methodology and stick to it across the project.
 ## 6. Anti-Patterns to Avoid
 
 | Anti-Pattern | Problem | Fix |
-|--------------|---------|-----|
+| -------------- | --------- | ----- |
 | `!important` | Breaks cascade, undebuggable | Increase specificity legitimately or restructure |
 | `#id` selectors | Too high specificity, not reusable | Use classes |
 | Deep nesting | `.a .b .c .d .e` — fragile, slow | Use BEM or flatten |
