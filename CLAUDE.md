@@ -40,9 +40,10 @@ Rules:
 
 1. **Plan first** — do not edit without a plan. Check if existing content covers the need.
 2. Create directory: `mkdir <skill-name>`
-3. Write `SKILL.md` with frontmatter + content
-4. If content exceeds 500 lines, extract non-actionable reference material to `reference.md`
-5. Add a `## See Also` section pointing to related skills
+3. Write `SKILL.md` with frontmatter + content.
+4. If content exceeds 500 lines, extract non-actionable reference material to `reference.md`.
+5. Add a `## See Also` section pointing to related skills.
+6. Finalize the changes by bumping into a newer version name with the format based on Semantic Versioning (https://semver.org).
 
 ## Naming Conventions
 
