@@ -3,6 +3,7 @@ set -e
 
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 SKILLS_DIR="$REPO_ROOT/skills"
+CONVERTER="$REPO_ROOT/scripts/opencode-convert-skill.sh"
 
 TOOL="opencode"
 PROJECT_PATH=""
@@ -73,13 +74,22 @@ fi
 
 mkdir -p "$DEST"
 
-COUNT=0
+CONVERTED=0
+SKIPPED=0
 for skill_dir in "$SKILLS_DIR"/*/; do
   skill_name="$(basename "$skill_dir")"
-  cp -r "$skill_dir" "$DEST/"
-  echo "  installed: $skill_name"
-  COUNT=$((COUNT + 1))
+  if ERR=$("$CONVERTER" "$skill_dir" "$DEST/$skill_name" 2>&1); then
+    echo "  converted: $skill_name"
+    CONVERTED=$((CONVERTED + 1))
+  else
+    echo "  SKIPPED ($ERR): $skill_name" >&2
+    SKIPPED=$((SKIPPED + 1))
+  fi
 done
 
 echo ""
-echo "$COUNT skill(s) installed to $DEST"
+echo "$CONVERTED skill(s) converted, $SKIPPED skipped, installed to $DEST"
+
+if [ "$CONVERTED" -eq 0 ]; then
+  exit 1
+fi

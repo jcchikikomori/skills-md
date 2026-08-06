@@ -61,7 +61,13 @@ Run the install script:
 ./install.sh --project /path/to/your-project
 ```
 
-Or copy manually — all folders under `skills/` into:
+This validates and converts each skill's frontmatter for opencode
+(`scripts/opencode-convert-skill.sh`) before installing — checking `name`/`description`
+against this repo's own rules and rewriting anything opencode's YAML parser would need
+its fallback for — instead of a raw file copy. A skill that fails validation is reported
+and skipped rather than installed broken; everything else still installs.
+
+Installs to:
 
 - Global: `$HOME/.config/opencode/skills/`
 - Per-project: `<project>/.opencode/skills/`
