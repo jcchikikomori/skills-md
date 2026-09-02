@@ -43,7 +43,7 @@ Rules:
 3. Write `SKILL.md` with frontmatter + content.
 4. If content exceeds 500 lines, extract non-actionable reference material to `reference.md`.
 5. Add a `## See Also` section pointing to related skills.
-6. Finalize the changes by bumping into a newer version name with the format based on Semantic Versioning (https://semver.org).
+6. Finalize the changes by bumping into a newer version name with the format based on Semantic Versioning (<https://semver.org>).
 
 ## Naming Conventions
 
@@ -65,4 +65,4 @@ Both Claude Code and opencode use the same SKILL.md format. Avoid Claude Code-sp
 
 ## Current Skills Inventory
 
-38 skills across: languages (python, ruby, java, php, nodejs, css), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql, oracle-sql), ORMs (sqlalchemy, pydantic, ruby-on-rails-migrate), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git, git-conflict-resolution), security/quality (owasp, web-accessibility, web-audit), mobile (android), workflow (debug, docu-component, what-is-this, shared-templates, markdown, llm-config-export, peer-review, claudecode-migrate).
+39 skills across: languages (python, ruby, java, php, nodejs, css), frameworks (fastapi, ruby-on-rails, spring-boot, grails, reactjs, vuejs, angularjs), databases (postgresql, mysql, oracle-sql), ORMs (sqlalchemy, pydantic, ruby-on-rails-migrate), architecture (backend, frontend, fullstack), infrastructure (docker, kubernetes, git, git-conflict-resolution), security/quality (owasp, web-accessibility, web-audit), mobile (android), workflow (debug, docu-component, what-is-this, shared-templates, markdown, llm-config-export, peer-review, claudecode-migrate, claude-standards).
