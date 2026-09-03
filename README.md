@@ -12,7 +12,7 @@ It's basically my skills repository based on the following information
 
 ## Skills
 
-**37 skills** across 8 domains:
+**40 skills** across 8 domains:
 
 | Domain | Skills |
 | -------- | -------- |
@@ -24,7 +24,7 @@ It's basically my skills repository based on the following information
 | Infrastructure | `docker`, `kubernetes`, `git`, `git-conflict-resolution` |
 | Security/Quality | `owasp`, `web-accessibility`, `web-audit` |
 | Mobile | `android` |
-| Workflow | `debug`, `docu-component`, `what-is-this`, `shared-templates`, `markdown`, `llm-config-export`, `peer-review` |
+| Workflow | `debug`, `docu-component`, `what-is-this`, `shared-templates`, `markdown`, `llm-config-export`, `peer-review`, `conventional-comment` |
 
 ## Unique Features
 
