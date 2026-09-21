@@ -58,7 +58,7 @@ See [SKILL.md](./SKILL.md) for the actionable checklist.
 
 | Criterion | Description | Test |
 |-----------|-------------|------|
-| **4.1.1** Parsing | (Obsolete in WCAG 2.2 — removed) | N/A |
+| **4.1.1** Parsing | Obsolete and removed in WCAG 2.2 — always passes; do not report as a finding | N/A |
 | **4.1.2** Name, Role, Value | UI components have name/role/value | Automated |
 | **4.1.3** Status Messages | Status messages programmatically determinable | Manual |
 
@@ -153,6 +153,57 @@ See [SKILL.md](./SKILL.md) for the actionable checklist.
 | **3.3.5** Help | Context-sensitive help available | Manual |
 | **3.3.6** Error Prevention (All) | Reversible/submittable/checkable for all data | Manual |
 | **3.3.9** Accessible Authentication (Enhanced) | No cognitive test (stricter than 3.3.8) | Manual |
+
+---
+
+## Conformance & Regulation
+
+WCAG itself is a W3C Recommendation, not a law. Laws reference it. These are the references that matter:
+
+### EU — European Accessibility Act (EAA)
+
+- Enforceable since **28 June 2025**. Applies to private-sector consumer-facing products and services sold in the EU (e-commerce, banking, ticketing, e-books, transport).
+- Conformance route: **EN 301 549**, the harmonised standard designated under standardisation request M/587.
+- **EN 301 549 v4.1.1** was published by ETSI on **2 September 2026** and incorporates the full text of **WCAG 2.2 AA**. It adds Annex ZB and clause A.2 mapping the standard to the EAA. Citation in the Official Journal of the EU is expected to follow.
+- Penalties are set per member state, so the exposure varies by country — fines through to removal of a product from the EU market.
+
+### US — ADA Title II
+
+- DOJ web and mobile app rule, technical standard **WCAG 2.1 AA**. Applies to state and local government entities: city and county governments, school districts, transit agencies, libraries, public universities.
+- On **20 April 2026** the DOJ issued an interim final rule extending the compliance dates by one year:
+  - Large entities (population 50,000+): **26 April 2027**
+  - Small entities and special district governments: **26 April 2028**
+
+### US — Section 508
+
+- Applies to federal agencies and their contractors. The 508 refresh baseline is **WCAG 2.0 AA**, though 2.1/2.2 is the practical expectation on new work.
+
+### Picking one target
+
+WCAG 2.2 AA is a strict superset of 2.1 AA — 2.2 added nine criteria and removed one (4.1.1), and removed nothing that 2.1 required. So a codebase that conforms to 2.2 AA also conforms to 2.1 AA. Build to **2.2 AA once** rather than tracking per-jurisdiction levels.
+
+Where a supplier questionnaire asks for a specific level, answer the level the regulation names (2.1 AA for ADA Title II) and note that the product is tested against 2.2 AA.
+
+---
+
+## WCAG 3.0 Outlook
+
+WCAG 3.0 ("W3C Accessibility Guidelines") is a rewrite, not an increment.
+
+| Aspect | WCAG 2.2 | WCAG 3.0 (draft) |
+|--------|----------|------------------|
+| Structure | Success criteria under 4 principles | Outcomes grouped under guidelines |
+| Conformance | A / AA / AAA, all-or-nothing per criterion | Graded, with assertions for process-based claims |
+| Scope | Web content | Web content, apps, tools, and authoring processes |
+| Testing | Pass/fail | Mixed — automated, manual, and procedural evidence |
+
+Timeline:
+
+- Latest **Working Draft: September 2026**
+- Candidate Recommendation anticipated **~Q4 2027**
+- W3C Recommendation **not before 2028**, with some estimates into 2029
+
+What to do now: **nothing structural.** No regulation references WCAG 3.0, and the draft is still changing between publications. The work that carries forward is the same work 2.2 AA demands — semantic markup, keyboard operability, contrast, and a habit of manual AT testing. Track the drafts; do not refactor against them.
 
 ---
 
@@ -259,6 +310,27 @@ describe('WCAG 2.2 Automated Tests', () => {
 });
 ```
 
+### Automated (@axe-core/playwright)
+
+Full-page scan in CI — catches what a component-level `jest-axe` run cannot, because it sees real layout, contrast, and focus state.
+
+```javascript
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test('checkout page has no WCAG 2.2 AA violations', async ({ page }) => {
+  await page.goto('/checkout');
+
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .analyze();
+
+  expect(results.violations).toEqual([]);
+});
+```
+
+Automated scans catch roughly a third of WCAG issues. Gate the pipeline on them, but never treat a green run as a conformance claim.
+
 ---
 
 ## Common Implementation Patterns
@@ -361,6 +433,27 @@ describe('WCAG 2.2 Automated Tests', () => {
 </div>
 ```
 
+### Reduced Motion (2.3.3, AAA)
+
+Respect the OS-level preference rather than building a custom toggle. `:focus-visible` styling is covered in the skip-link CSS above.
+
+```css
+.card {
+  transition: transform 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
 ### Redundant Entry (3.3.7)
 
 ```javascript
@@ -375,16 +468,22 @@ function populateShippingFromBilling() {
 ## Resources
 
 ### Official
-- [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/)
+
+- [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/) — W3C Recommendation, 12 December 2024
 - [How to Meet WCAG 2.2 (Quick Reference)](https://www.w3.org/WAI/WCAG22/quickref/)
 - [Understanding WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/)
-- [ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [WAI-ARIA 1.2](https://www.w3.org/TR/wai-aria-1.2/) — current Recommendation (1.3 is a Working Draft)
+- [ARIA Authoring Practices Guide (APG)](https://www.w3.org/WAI/ARIA/apg/) — widget patterns, keyboard interaction models
+- [WCAG 3.0 Working Draft](https://www.w3.org/TR/wcag-3.0/) — draft only; see [September 2026 review call](https://www.w3.org/WAI/news/2026-09-10/wcag3/)
 
 ### Training
+
 - [WAI Tutorials](https://www.w3.org/WAI/tutorials/)
 - [Web Accessibility Perspectives](https://www.w3.org/WAI/perspective-videos/)
 
-### Legal
-- [Section 508](https://www.section508.gov/) (US)
-- [EN 301 549](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/) (Europe)
-- [European Accessibility Act](https://ec.europa.eu/social/main.jsp?catId=1202) (EU)
+### Legal & Regulatory
+
+- [ADA Title II web rule — first steps](https://www.ada.gov/resources/web-rule-first-steps/) (US) — WCAG 2.1 AA; deadlines 26 Apr 2027 / 26 Apr 2028
+- [Section 508](https://www.section508.gov/) (US federal) — WCAG 2.0 AA baseline
+- [EN 301 549](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/) (Europe) — v4.1.1, published 2 Sep 2026, references WCAG 2.2 AA
+- [European Accessibility Act](https://ec.europa.eu/social/main.jsp?catId=1202) (EU) — enforceable since 28 Jun 2025
