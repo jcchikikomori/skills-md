@@ -1,6 +1,7 @@
 # LLM Config Export — Reference
 
-Extended schemas, path tables, and restoration guide for [SKILL.md](./SKILL.md).
+Extended schemas, path tables, and bundle layouts for [SKILL.md](./SKILL.md). To restore a bundle, use
+[llm-config-import](../llm-config-import/SKILL.md).
 
 ---
 
@@ -54,13 +55,14 @@ Full JSON Schema for `export-manifest.json`:
 | Project instructions | `<project>/CLAUDE.md` | checked first by Claude Code |
 | Project instructions (alt) | `<project>/.claude/CLAUDE.md` | fallback location |
 | Plugins registry | `~/.claude/plugins/installed_plugins.json` | plugin list + versions |
+| Marketplaces | `~/.claude/plugins/known_marketplaces.json` | marketplace sources (`github`, `git`, `directory`) |
 | Plugin data | `~/.claude/plugins/data/*.json` | lightweight per-plugin metadata |
 | Custom skills | `~/.claude/skills/` | user-created SKILL.md files |
 | Keybindings | `~/.claude/keybindings.json` | custom key bindings |
 | Plans | `~/.claude/plans/*.md` | auto-named plan files |
 | Tasks | `~/.claude/tasks/<uuid>/` | task state directories |
 | Memories (remember plugin) | `~/.claude/projects/<project-slug>/memory/` | per-project memory files |
-| MCPs (embedded) | `~/.claude/settings.json` → `mcpServers` key | global MCP server definitions |
+| MCPs (user scope) | `~/.claude.json` → `mcpServers` key | export this key only — the file also holds account state |
 | MCPs (project) | `<project>/.mcp.json` | project-local MCP config |
 
 ### Memory slug encoding
@@ -78,34 +80,44 @@ When restoring on a new machine with a different username or path, update the sl
 
 ## opencode Paths
 
-opencode follows XDG Base Directory conventions:
+opencode follows XDG Base Directory conventions (verified against opencode 1.18.30):
 
 | Item | Path | Notes |
 |---|---|---|
 | Config root | `$XDG_CONFIG_HOME/opencode/` | defaults to `~/.config/opencode/` |
-| Alt config root | `~/.opencode/` | used if XDG not set |
-| Main settings | `~/.config/opencode/config.json` | |
-| Instructions | `~/.config/opencode/instructions.md` | global custom instructions |
-| Skills | same SKILL.md format, location varies | run `opencode config show` |
-| MCPs | `~/.config/opencode/mcp.json` or embedded in config | |
-| Project instructions | `<project>/CLAUDE.md` | shared format with Claude Code |
+| Main settings | `~/.config/opencode/opencode.jsonc` | JSONC; holds `permission`, `instructions`, `mcp`, `plugin`, `provider` |
+| Instructions | `~/.config/opencode/AGENTS.md` | global custom instructions |
+| Skills | `~/.config/opencode/skills/` | same SKILL.md format as Claude Code |
+| Agents | `~/.config/opencode/agents/` | |
+| Commands | `~/.config/opencode/commands/` | |
+| MCPs | `mcp` key inside `opencode.jsonc` | no separate MCP file |
+| Plugins | `plugin` key inside `opencode.jsonc` | npm module names, installed on start |
+| Project settings | `<project>/opencode.jsonc` | |
+| Project instructions | `<project>/AGENTS.md` | |
 
-> opencode paths may change across versions. Run `opencode config show` or `opencode --help` for authoritative paths for the installed version.
+> opencode paths may change across versions. Run `opencode debug paths` for the global directories and
+> `opencode debug config` for the resolved configuration of the installed version.
 
 ---
 
 ## Bundle Layout
 
-```
+### Claude Code bundle
+
+```text
 llm-config-export-<YYYYMMDD>/
 ├── export-manifest.json          # Path mapping + metadata (always present)
 ├── settings.json                 # Global settings
+├── project-settings.json         # Project .claude/settings.json (renamed to avoid collision)
 ├── settings.local.json           # Project-local settings (if included)
 ├── CLAUDE.md                     # Global instructions
 ├── project-CLAUDE.md             # Project-level instructions (renamed to avoid collision)
-├── installed_plugins.json        # Plugin registry
-├── .mcp.json                     # MCP config
+├── installed_plugins.json        # Plugin registry (import reinstalls from it, never copies it)
+├── known_marketplaces.json       # Marketplace sources (import reads the `source` fields only)
+├── .mcp.json                     # Project MCP config
+├── user-mcps.json                # {"mcpServers": {...}} extracted from ~/.claude.json
 ├── keybindings.json              # Key bindings
+├── .credentials.json             # Opt-in only — auth tokens
 ├── skills/                       # Custom skills (directory copied verbatim)
 │   └── <skill-name>/
 │       └── SKILL.md
@@ -118,16 +130,29 @@ llm-config-export-<YYYYMMDD>/
     └── <uuid>/
 ```
 
+### opencode bundle
+
+MCPs and plugins live inside `opencode.jsonc`, so the manifest's `mcps` and `plugins` point at that file.
+
+```text
+llm-config-export-<YYYYMMDD>/
+├── export-manifest.json          # "tool": "opencode"
+├── opencode.jsonc                # Global settings, incl. mcp and plugin keys
+├── project-opencode.jsonc        # Project opencode.jsonc (renamed to avoid collision)
+├── AGENTS.md                     # Global instructions
+├── project-AGENTS.md             # Project-level instructions (renamed to avoid collision)
+└── skills/
+    └── <skill-name>/
+        └── SKILL.md
+```
+
 ---
 
 ## Restoring from Export
 
-1. Read `export-manifest.json` to find original paths for each item.
-2. Copy files back to their source paths (or the equivalent on the new machine).
-3. **Memories**: restore to `~/.claude/projects/<project-slug>/memory/` — create the directory if it doesn't exist. If the project path changed (different username or location), re-derive the slug from the new absolute path.
-4. **Plugins**: restore `installed_plugins.json`, then run `claude plugins sync` (or equivalent) to reinstall from the registry. The plugin cache is not included in the export — it will be rebuilt on first use.
-5. **MCPs**: confirm server paths, URLs, and credentials are still valid on the destination machine before restoring `.mcp.json`.
-6. **Settings with credentials**: `settings.json` may reference MCP auth tokens or API keys in the `env` section. Review before restoring.
+Use [llm-config-import](../llm-config-import/SKILL.md). It maps each bundle entry back to its target, backs up
+what it overwrites, reinstalls plugins through the CLI instead of copying `installed_plugins.json`, and writes an
+import report.
 
 ---
 
@@ -135,7 +160,8 @@ llm-config-export-<YYYYMMDD>/
 
 | File | Reason |
 |---|---|
-| `~/.claude/credentials.json` | Auth tokens — rotate after any migration, never share |
+| `~/.claude/.credentials.json` | Auth tokens — rotate after any migration, never share |
+| `~/.claude.json` (whole file) | Account state and per-project history — export only its `mcpServers` key |
 | `~/.claude/history.jsonl` | Full conversation history — large and personal |
 | `~/.claude/transcripts/` | Session transcripts |
 | `~/.claude/session-env/` | Shell environment snapshots — meaningless on new machine |

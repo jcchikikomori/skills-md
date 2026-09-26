@@ -21,7 +21,11 @@ Probe what actually exists before assuming any path is present. A missing path i
 
 # Plugins
 ~/.claude/plugins/installed_plugins.json
+~/.claude/plugins/known_marketplaces.json   # marketplace sources for reinstall
 ~/.claude/plugins/data/
+
+# User-scope MCPs — extract only the `mcpServers` key, never copy the whole file
+~/.claude.json
 
 # User content
 ~/.claude/skills/
@@ -42,9 +46,9 @@ Use `test -e <path>` or `ls <path> 2>/dev/null` to check each. Collect all found
 
 ### Memory path pattern
 
-Memory directories follow this encoding: absolute project path → replace `/` with `-` → strip leading `-home-<user>-`:
+Memory directories follow this encoding: absolute project path → replace every `/` with `-` (the home prefix stays):
 
-```
+```text
 Project: /home/alice/Projects/my-app
 Memory:  ~/.claude/projects/-home-alice-Projects-my-app/memory/
 ```
@@ -79,7 +83,7 @@ Write `export-manifest.json` to the destination directory **before copying anyth
     "project_settings": [".claude/settings.json"],
     "instructions": ["~/.claude/CLAUDE.md", "CLAUDE.md"],
     "plugins": "~/.claude/plugins/installed_plugins.json",
-    "mcps": [".mcp.json"],
+    "mcps": [".mcp.json", "~/.claude.json#mcpServers"],
     "skills": "~/.claude/skills/",
     "plans": "~/.claude/plans/",
     "memories": ["~/.claude/projects/-home-alice-Projects-my-app/memory/"],
@@ -87,7 +91,7 @@ Write `export-manifest.json` to the destination directory **before copying anyth
     "keybindings": "~/.claude/keybindings.json"
   },
   "missing": [],
-  "sensitive_excluded": ["~/.claude/credentials.json"]
+  "sensitive_excluded": ["~/.claude/.credentials.json"]
 }
 ```
 
@@ -104,13 +108,13 @@ Present this default set and let the user override:
 | Project settings (`.claude/settings*.json`) | ✓ include |
 | Custom instructions (`CLAUDE.md`) | ✓ include |
 | Plugins registry | ✓ include |
-| MCPs (`.mcp.json`) | ✓ include |
+| MCPs (`.mcp.json`, user `mcpServers`) | ✓ include |
 | Custom skills | ✓ include |
 | Keybindings | ✓ include |
 | Plans | ask user |
 | Memories | ask user |
 | Tasks | ask user |
-| Credentials (`credentials.json`) | ✗ opt-in only |
+| Credentials (`.credentials.json`) | ✗ opt-in only |
 
 If the user says "everything" or "all", include all except credentials.
 
@@ -139,16 +143,20 @@ Accept any absolute path the user provides. If they provide a directory without 
 
 Create destination only after the user confirms the path.
 
-```
+```text
 ~/Documents/llm-config-export-20260617/
 ├── export-manifest.json          ← always first
-├── settings.json
-├── settings.local.json
+├── settings.json                 ← global
+├── project-settings.json         ← project .claude/settings.json, renamed to avoid collision
+├── settings.local.json           ← project .claude/settings.local.json
 ├── CLAUDE.md
 ├── project-CLAUDE.md             ← project-level, renamed to avoid collision
 ├── installed_plugins.json
+├── known_marketplaces.json       ← marketplace sources, so import can re-add them
 ├── .mcp.json
+├── user-mcps.json                ← only the `mcpServers` key from ~/.claude.json
 ├── keybindings.json
+├── .credentials.json             ← opt-in only (see Security)
 ├── skills/                       ← copied verbatim
 ├── plans/
 ├── memories/
@@ -158,10 +166,20 @@ Create destination only after the user confirms the path.
 
 For memories at non-standard paths, flatten to `memories/<project-slug>/` and record the original path in the manifest so restoration can target the correct location.
 
-To create a tarball after export:
+Extract user-scope MCPs without copying the rest of `~/.claude.json` (it holds account state and per-project
+history):
 
 ```bash
-tar -czf ~/Documents/llm-config-export-<date>.tar.gz ~/Documents/llm-config-export-<date>/
+python3 -c "import json,sys; json.dump({'mcpServers': json.load(open(sys.argv[1])).get('mcpServers', {})}, sys.stdout, indent=2)" \
+  ~/.claude.json > "<dest>/user-mcps.json"
+```
+
+For an opencode export, use the opencode layout in [reference.md → Bundle Layout](./reference.md#bundle-layout).
+
+To create a tarball after export (`-C` keeps paths relative inside the archive):
+
+```bash
+tar -czf ~/Documents/llm-config-export-<date>.tar.gz -C ~/Documents llm-config-export-<date>/
 ```
 
 ## Security
@@ -170,15 +188,18 @@ Never include by default — these require explicit opt-in:
 
 | File | Why excluded |
 | --- | --- |
-| `~/.claude/credentials.json` | Auth tokens — rotate after migration, never share |
+| `~/.claude/.credentials.json` | Auth tokens — rotate after migration, never share (macOS keeps them in the Keychain) |
+| `~/.claude.json` (whole file) | Account state and per-project history — export only its `mcpServers` key |
 | `~/.claude/history.jsonl` | Full conversation history — large and personal |
 | `~/.claude/transcripts/` | Session transcripts |
 | `~/.claude/session-env/` | Shell environment snapshots — meaningless on new machine |
 | `~/.claude/plugins/cache/` | ~3K files — reinstall from plugin registry |
 | `~/.claude/file-history/` | Per-file edit history — large, not portable |
 
-If the user explicitly requests credentials, warn: credentials.json contains auth tokens — only include for exports to systems you fully control and trust, and rotate the tokens afterward.
+If the user explicitly requests credentials, warn: `.credentials.json` contains auth tokens — only include for
+exports to systems you fully control and trust, and rotate the tokens afterward.
 
 ## See Also
 
-- [reference.md](./reference.md) — full manifest JSON schema, opencode paths, restoration guide
+- [reference.md](./reference.md) — full manifest JSON schema, opencode paths, bundle layouts
+- [llm-config-import](../llm-config-import/SKILL.md) — import this bundle into Claude Code or opencode
