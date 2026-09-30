@@ -12,7 +12,7 @@ It's basically my skills repository based on the following information
 
 ## Skills
 
-**41 skills** across 8 domains:
+**42 skills** across 8 domains:
 
 | Domain | Skills |
 | -------- | -------- |
@@ -20,7 +20,7 @@ It's basically my skills repository based on the following information
 | Frameworks | `fastapi`, `ruby-on-rails`, `spring-boot`, `grails`, `reactjs`, `vuejs`, `angularjs` |
 | Databases | `postgresql`, `mysql`, `oracle-sql` |
 | ORMs | `sqlalchemy`, `pydantic`, `ruby-on-rails-migrate` |
-| Architecture | `backend`, `frontend`, `fullstack` |
+| Architecture | `backend`, `frontend`, `fullstack`, `rest-api` |
 | Infrastructure | `docker`, `kubernetes`, `git`, `git-conflict-resolution` |
 | Security/Quality | `owasp`, `web-accessibility`, `web-audit` |
 | Mobile | `android` |

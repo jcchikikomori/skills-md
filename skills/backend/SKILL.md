@@ -13,11 +13,8 @@ When executing backend tasks, ensure your work adheres to the latest industry st
 
 ### 1. APIs (RESTful / GraphQL)
 
-- **REST Best Practices:**
-  - Pluralize resources (`/users`, not `/user`).
-  - Use appropriate HTTP verbs (GET, POST, PUT, PATCH, DELETE).
-  - Return standard HTTP status codes (200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Server Error).
-  - Include pagination, filtering, and sorting out of the box for collection endpoints.
+- **REST:** Follow the `rest-api` skill for resource naming, HTTP methods, status codes, error format, pagination,
+  versioning, and the OpenAPI spec.
 - **GraphQL Best Practices:**
   - Define clear mutations and queries.
   - Solve N+1 queries using DataLoaders or Eager Loading on the database side.
